@@ -1,0 +1,67 @@
+<html>
+    <head>
+        <script>
+            async function sendData() {
+                const city = document.getElementById("city").value;
+                const state = document.getElementById("state").value;
+
+                const data = {
+                    city: city,
+                    state: state
+                };
+
+                const response = await fetch("http://localhost:5000/weather", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                // Clear any existing table
+                const resultDiv = document.getElementById("result");
+                while (resultDiv.firstChild) {
+                    resultDiv.removeChild(resultDiv.firstChild);
+                }
+
+                // Create a new table element
+                const table = document.createElement("table");
+                resultDiv.appendChild(table);
+
+                // Create the header row
+                const headerRow = document.createElement("tr");
+                table.appendChild(headerRow);
+                const keys = Object.keys(result);
+                const monthNames = Object.keys(result[keys[0]]);
+                monthNames.unshift(""); // Add an empty cell for the first column
+                monthNames.forEach(monthName => {
+                    const headerCell = document.createElement("th");
+                    headerCell.textContent = monthName;
+                    headerRow.appendChild(headerCell);
+                });
+
+                // Create the data rows
+                keys.forEach(key => {
+                    const dataRow = document.createElement("tr");
+                    table.appendChild(dataRow);
+                    const rowData = result[key];
+                    const dataValues = Object.values(rowData);
+                    dataValues.unshift(key); // Add the month name to the first column
+                    dataValues.forEach(dataValue => {
+                        const dataCell = document.createElement("td");
+                        dataCell.textContent = dataValue;
+                        dataRow.appendChild(dataCell);
+                    });
+                });
+            }
+        </script>
+    </head>
+    <body>
+        <input type="text" id="city" placeholder="Enter city">
+        <input type="text" id="state" placeholder="Enter state">
+        <button onclick="sendData()">Submit</button>
+        <div id="result"></div>
+    </body>
+</html>
