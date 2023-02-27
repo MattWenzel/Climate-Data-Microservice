@@ -84,8 +84,3 @@ For example, the following JSON data represents climate data for the city of San
         ...
 ```
 Note that the microservice may respond with an error message if there is an issue with the request or if the climate data for the given city and state could not be found.
-
-UML Sequence: 
-
-![image](https://user-images.githubusercontent.com/97201029/218585966-08ee6498-01b3-4df7-89f5-0ce576c3919a.png)
-
