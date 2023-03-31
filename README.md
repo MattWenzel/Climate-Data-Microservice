@@ -1,4 +1,4 @@
-This is a microservice created for CS361 at Oregon State University. It allows users to retrieve climate data for a given city and state. The user enters the city and state information, which is then sent to a Flask app using a POST request. The Flask app processes the data and returns the climate data for the given city and state in JSON format.
+This is a microservice created for CS361 at Oregon State University. It allows users to retrieve climate data for a given city and state. The user enters the city and state information, which is then sent to a Flask server using a POST request. The Flask server processes the data and returns the climate data for the given city and state in JSON format.
 
 Communication Contract:
 
